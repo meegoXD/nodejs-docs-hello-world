@@ -4,7 +4,7 @@ const request = require('request')
 
 const app = express().use(bodyParser.json());
 
-const FACEBOOK_TOKEN = process.endv.FACEBOOK_TOKEN;
+const FACEBOOK_TOKEN = process.env.FACEBOOK_TOKEN;
 
 app.post('/webhook', (req, res) => {
     console.log('POST: webhook')

@@ -46,6 +46,6 @@ app.get('/', (req, res) => {
     res.status(200).send('Hola a mi bot');
 });
 
-app.listen(1337, () => {
+app.listen(process.env.PORT, () => {
     console.log('Inicio e servidor...');
 })

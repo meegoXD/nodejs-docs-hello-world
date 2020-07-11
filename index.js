@@ -81,11 +81,11 @@ function handleMessage(sender_psid, received_message) {
                                 {
                                     "type":"postback",
                                     "title":"Sí 👍🏽",
-                                    "payload":"Que bueno 😬"
+                                    "payload":"si"
                                 },{
                                     "type":"postback",
                                     "title":"No 👎🏽",
-                                    "payload":"Ay que mal 😫"
+                                    "payload":"no"
                                 }              
                                 ]      
                         }
@@ -99,7 +99,17 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function handlePostback(sender_psid, received_postback) {
+    let response = '';
 
+    const payload = received_postback.payload;
+
+    if ( payload === 'si' ) {
+        response = { 'text' : 'Que bueno 😬' };
+    } else if ( payload === 'no' ) {
+        response = { 'text' : 'Ay que mal 😫' }
+    }
+
+    callSendAPI(sender_psid, response);
 }
 
 function callSendAPI(sender_psid, response) {

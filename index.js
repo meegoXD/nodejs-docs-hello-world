@@ -64,7 +64,6 @@ function handleMessage(sender_psid, received_message) {
     if (received_message.text) {
         response = {
             'text' : `Tu mensaje fue: ${received_message.text} 🙊`,
-            'text' : 'Si quieres mandame una imagen'
         }
     } else if (received_message.attachments) {
         const url = received_message.attachments[0].payload.url;
@@ -97,6 +96,7 @@ function handleMessage(sender_psid, received_message) {
     }
 
     callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, {'text' : 'Si quieres mandame una imagen'});
 }
 
 function handlePostback(sender_psid, received_postback) {

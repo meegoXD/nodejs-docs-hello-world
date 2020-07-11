@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const request = require('request')
 
 const app = express().use(bodyParser.json());
+
+const FACEBOOK_TOKEN = process.endv.FACEBOOK_TOKEN;
 
 app.post('/webhook', (req, res) => {
     console.log('POST: webhook')
@@ -14,6 +17,15 @@ app.post('/webhook', (req, res) => {
 
             const webhookEvent = entry.messaging[0];
             console.log(webhookEvent);
+
+            const sender_psid = webhookEvent.sender.id;
+            console.log(`Sender PSID: ${sender_psid}`);
+
+            if (webhookEvent.message) {
+                handleMessage(sender_psid, webhookEvent.message)
+            } else if (webhookEvent.postback) {
+                handlePostback(sender_psid, webhookEvent.postback)
+            }
         });
 
         res.status(200).send('Evento recibido')
@@ -45,6 +57,45 @@ app.get('/webhook', (req, res) => {
 app.get('/', (req, res) => {
     res.status(200).send('Hola a mi bot');
 });
+
+function handleMessage(sender_psid, received_message) {
+    let response;
+
+    if (received_message.text) {
+        response = {
+            'text' : `Tu mensaje fue: ${received_message.text} 🙊`
+        }
+    }
+
+    callSendAPI(sender_psid, response);
+}
+
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+function callSendAPI(sender_psid, response) {
+    const requestBody = {
+        'recipient' : {
+            'id' : sender_psid
+        },
+        'message' : response
+    };
+
+    request({
+        'uri' : '',
+        'qs' : {},
+        'method': 'POST',
+        'json' : requestBody
+    }, (err, res, body) => {
+        if (!err) {
+            console.log('Mensaje enviado de vuelta');
+        } else {
+            console.error('imposible enviar el texto 😢');
+        }
+    });
+
+}
 
 app.listen(process.env.PORT, () => {
     console.log('Inicio e servidor...');

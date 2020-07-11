@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/a69770a6-fd5f-4e9a-a583-4903b4fd34d4/resourceGroups/AplicacionWeb/providers/Microsoft.Web/sites/nasty-stink",
+    "appService.deploySubpath": "."
+}

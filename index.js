@@ -65,6 +65,34 @@ function handleMessage(sender_psid, received_message) {
         response = {
             'text' : `Tu mensaje fue: ${received_message.text} 🙊`
         }
+    } else if (received_message.attachments) {
+        const url = received_message.attachments[0].payload.url;
+        response = {
+            "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":[
+                     {
+                      "title":"Confirma tu imagen 🤔💭",
+                      "image_url": url,
+                      "subtitle":"ojala y todo funcione",
+                      "buttons":[
+                        {
+                          "type":"postback",
+                          "title":"Sí 👍🏽",
+                          "payload":"Que bueno 😬"
+                        },{
+                          "type":"postback",
+                          "title":"No 👎🏽",
+                          "payload":"Ay que mal 😫"
+                        }              
+                      ]      
+                    }
+                  ]
+                }
+              }
+        }
     }
 
     callSendAPI(sender_psid, response);

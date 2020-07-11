@@ -95,10 +95,7 @@ function handleMessage(sender_psid, received_message) {
         }
     }
 
-    callSendAPI(sender_psid, response).then(() => {
-        return callSendAPI(sender_psid, {'text' : 'Si quieres mandame una imagen'});
-    });
-    
+    callSendAPI(sender_psid, response);
 }
 
 function handlePostback(sender_psid, received_postback) {

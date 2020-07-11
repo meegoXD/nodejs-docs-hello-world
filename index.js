@@ -63,7 +63,8 @@ function handleMessage(sender_psid, received_message) {
 
     if (received_message.text) {
         response = {
-            'text' : [`Tu mensaje fue: ${received_message.text} 🙊`, 'Si quieres mandame una imagen']
+            'text' : `Tu mensaje fue: ${received_message.text} 🙊`,
+            'text' : 'Si quieres mandame una imagen'
         }
     } else if (received_message.attachments) {
         const url = received_message.attachments[0].payload.url;

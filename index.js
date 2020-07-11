@@ -71,27 +71,27 @@ function handleMessage(sender_psid, received_message) {
             "attachment":{
                 "type":"template",
                 "payload":{
-                  "template_type":"generic",
-                  "elements":[
-                     {
-                      "title":"Confirma tu imagen 🤔💭",
-                      "image_url": url,
-                      "subtitle":"ojala y todo funcione",
-                      "buttons":[
+                    "template_type":"generic",
+                    "elements":[
                         {
-                          "type":"postback",
-                          "title":"Sí 👍🏽",
-                          "payload":"Que bueno 😬"
-                        },{
-                          "type":"postback",
-                          "title":"No 👎🏽",
-                          "payload":"Ay que mal 😫"
-                        }              
-                      ]      
-                    }
-                  ]
+                            "title":"Confirma tu imagen 🤔💭",
+                            "image_url": url,
+                            "subtitle":"ojala y todo funcione",
+                            "buttons":[
+                                {
+                                    "type":"postback",
+                                    "title":"Sí 👍🏽",
+                                    "payload":"Que bueno 😬"
+                                },{
+                                    "type":"postback",
+                                    "title":"No 👎🏽",
+                                    "payload":"Ay que mal 😫"
+                                }              
+                                ]      
+                        }
+                    ]
                 }
-              }
+            }
         }
     }
 
